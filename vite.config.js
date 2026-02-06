@@ -1,18 +1,21 @@
-import { defineConfig } from 'vite';
+import { svelte } from '@sveltejs/vite-plugin-svelte';
 import laravel from 'laravel-vite-plugin';
-import tailwindcss from '@tailwindcss/vite';
+import { defineConfig } from 'vite';
+import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
     plugins: [
+        svelte(),
+        tailwindcss(),
         laravel({
-            input: ['resources/css/app.css', 'resources/js/app.js'],
+            input: 'resources/js/app.ts',
+            ssr: 'resources/js/ssr.ts',
             refresh: true,
         }),
-        tailwindcss(),
     ],
-    server: {
-        watch: {
-            ignored: ['**/storage/framework/views/**'],
+    resolve: {
+        alias: {
+            $lib: '/resources/js/lib',
         },
     },
 });
