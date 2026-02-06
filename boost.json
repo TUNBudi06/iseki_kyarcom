@@ -1,15 +1,6 @@
 {
     "agents": [
-        "junie"
+        "copilot"
     ],
-    "guidelines": true,
-    "herd_mcp": false,
-    "mcp": true,
-    "sail": false,
-    "skills": [
-        "wayfinder-development",
-        "pest-testing",
-        "inertia-svelte-development",
-        "tailwindcss-development"
-    ]
+    "guidelines": true
 }
