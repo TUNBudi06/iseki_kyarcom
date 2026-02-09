@@ -7,7 +7,7 @@ import {wayfinder} from "@laravel/vite-plugin-wayfinder";
 
 
 export default defineConfig({
-    base: '/laravel-svelte-inertia-starter/public/build',
+    base: '/iseki_label/public/build',
     build: {
         rollupOptions: {
             output: {

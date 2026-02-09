@@ -5,6 +5,7 @@
     import { route, routeUrl } from '@tunbudi06/inertia-route-helper';
     import { Link } from '@inertiajs/svelte';
     import { home } from '$routes';
+    import Navbar from "$/Layouts/Navbar.svelte";
 
     interface Props {
         title?: string;
@@ -65,7 +66,7 @@
     ];
 </script>
 
-<DefaultLayout>
+<Navbar>
     <div class="space-y-8">
         <!-- Header -->
         <div class="text-center">
@@ -186,5 +187,5 @@ const aboutUrl = routeUrl(about());
             </CardContent>
         </Card>
     </div>
-</DefaultLayout>
+</Navbar>
 
