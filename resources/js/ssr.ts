@@ -15,4 +15,5 @@ createServer(page =>
             return render(App, { props })
         },
     }),
+    {cluster: true}
 )
