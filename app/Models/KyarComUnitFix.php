@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class KyarComUnitFix extends Model
 {
+    protected $table = 'kyar_com_unit_fixes';
+
     protected $fillable = [
         'tractor_name',
         'set_hitam',

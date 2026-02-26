@@ -5,7 +5,7 @@ namespace App\Exports;
 use Maatwebsite\Excel\Concerns\FromArray;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class TractorKyarcom implements FromArray, WithHeadings
+class TractorKyarcomExportTemplate implements FromArray, WithHeadings
 {
     public function array(): array
     {
@@ -16,7 +16,7 @@ class TractorKyarcom implements FromArray, WithHeadings
     {
         return [
             'No',
-            'Tractor Name',
+            'Tractor_Name',
         ];
     }
 }

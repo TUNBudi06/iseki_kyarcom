@@ -2,7 +2,7 @@ import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFo
 /**
 * @see \App\Http\Controllers\HomeController::home
  * @see app/Http/Controllers/HomeController.php:13
- * @route '/'
+ * @route '/home'
  */
 export const home = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: home.url(options),
@@ -11,13 +11,13 @@ export const home = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 home.definition = {
     methods: ["get","head"],
-    url: '/',
+    url: '/home',
 } satisfies RouteDefinition<["get","head"]>
 
 /**
 * @see \App\Http\Controllers\HomeController::home
  * @see app/Http/Controllers/HomeController.php:13
- * @route '/'
+ * @route '/home'
  */
 home.url = (options?: RouteQueryOptions) => {
     return home.definition.url + queryParams(options)
@@ -26,7 +26,7 @@ home.url = (options?: RouteQueryOptions) => {
 /**
 * @see \App\Http\Controllers\HomeController::home
  * @see app/Http/Controllers/HomeController.php:13
- * @route '/'
+ * @route '/home'
  */
 home.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: home.url(options),
@@ -35,7 +35,7 @@ home.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 /**
 * @see \App\Http\Controllers\HomeController::home
  * @see app/Http/Controllers/HomeController.php:13
- * @route '/'
+ * @route '/home'
  */
 home.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: home.url(options),
@@ -45,7 +45,7 @@ home.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     /**
 * @see \App\Http\Controllers\HomeController::home
  * @see app/Http/Controllers/HomeController.php:13
- * @route '/'
+ * @route '/home'
  */
     const homeForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
         action: home.url(options),
@@ -55,7 +55,7 @@ home.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
             /**
 * @see \App\Http\Controllers\HomeController::home
  * @see app/Http/Controllers/HomeController.php:13
- * @route '/'
+ * @route '/home'
  */
         homeForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: home.url(options),
@@ -64,7 +64,7 @@ home.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
             /**
 * @see \App\Http\Controllers\HomeController::home
  * @see app/Http/Controllers/HomeController.php:13
- * @route '/'
+ * @route '/home'
  */
         homeForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: home.url({

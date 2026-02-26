@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('instruction');
             $table->string('tractor_name');
+            $table->date('date');
             $table->timestamps();
         });
     }

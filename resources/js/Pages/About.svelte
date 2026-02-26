@@ -1,5 +1,8 @@
 <script lang="ts">
-    import DefaultLayout from '../Layouts/DefaultLayout.svelte';
+    import { Link } from '@inertiajs/svelte';
+    import { route, routeUrl } from '@tunbudi06/inertia-route-helper';
+    import Navbar from '$/Layouts/Navbar.svelte';
+    import { home } from '$routes';
     import { Button } from '$shadcn/components/ui/button';
     import {
         Card,
@@ -9,10 +12,7 @@
         CardHeader,
         CardTitle,
     } from '$shadcn/components/ui/card';
-    import { route, routeUrl } from '@tunbudi06/inertia-route-helper';
-    import { Link } from '@inertiajs/svelte';
-    import { home } from '$routes';
-    import Navbar from '$/Layouts/Navbar.svelte';
+    import DefaultLayout from '../Layouts/DefaultLayout.svelte';
 
     interface Props {
         title?: string;

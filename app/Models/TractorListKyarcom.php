@@ -6,8 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class TractorListKyarcom extends Model
 {
-    protected $table = 'tractor_list_kyarcom';
+    protected $table = 'tractor_list_kyarcoms';
+
     protected $fillable = [
-        'name',
+        'instruction',
+        'tractor_name',
+        'date',
     ];
 }
