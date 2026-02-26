@@ -1,10 +1,9 @@
 ---
 name: inertia-svelte-development
-description: >-
-  Develops Inertia.js v2 Svelte client-side applications. Activates when creating
-  Svelte pages, forms, or navigation; using Link, Form, or router; working with
-  deferred props, prefetching, or polling; or when user mentions Svelte with Inertia,
-  Svelte pages, Svelte forms, or Svelte navigation.
+description: "Develops Inertia.js v2 Svelte client-side applications. Activates when creating Svelte pages, forms, or navigation; using Link, Form, or router; working with deferred props, prefetching, or polling; or when user mentions Svelte with Inertia, Svelte pages, Svelte forms, or Svelte navigation."
+license: MIT
+metadata:
+  author: laravel
 ---
 
 # Inertia Svelte Development
@@ -27,12 +26,12 @@ Use `search-docs` for detailed Inertia v2 Svelte patterns and documentation.
 
 ### Page Components Location
 
-Svelte page components should be placed in the `resources/js/Pages` directory.
+Svelte page components should be placed in the `resources/js/pages` directory.
 
 ### Page Component Structure
 
-<code-snippet name="Basic Svelte Page Component" lang="svelte">
-
+<!-- Basic Svelte Page Component -->
+```svelte
 <script>
 export let users
 </script>
@@ -45,8 +44,7 @@ export let users
         {/each}
     </ul>
 </div>
-
-</code-snippet>
+```
 
 ## Client-Side Navigation
 
@@ -54,8 +52,8 @@ export let users
 
 Use `<Link>` for client-side navigation instead of traditional `<a>` tags:
 
-<code-snippet name="Inertia Svelte Navigation" lang="svelte">
-
+<!-- Inertia Svelte Navigation -->
+```svelte
 <script>
 import { Link } from '@inertiajs/svelte'
 </script>
@@ -63,39 +61,36 @@ import { Link } from '@inertiajs/svelte'
 <Link href="/">Home</Link>
 <Link href="/users">Users</Link>
 <Link href={`/users/${user.id}`}>View User</Link>
-
-</code-snippet>
+```
 
 ### Link With Method
 
-<code-snippet name="Link With POST Method" lang="svelte">
-
+<!-- Link With POST Method -->
+```svelte
 <script>
 import { Link } from '@inertiajs/svelte'
 </script>
 
 <Link href="/logout" method="post">Logout</Link>
-
-</code-snippet>
+```
 
 ### Prefetching
 
 Prefetch pages to improve perceived performance:
 
-<code-snippet name="Prefetch on Hover" lang="svelte">
-
+<!-- Prefetch on Hover -->
+```svelte
 <script>
 import { Link } from '@inertiajs/svelte'
 </script>
 
 <Link href="/users" prefetch>Users</Link>
-
-</code-snippet>
+```
 
 ### Programmatic Navigation
 
-<code-snippet name="Router Visit" lang="svelte">
-
+<!-- Router Visit -->
+```svelte
 <script>
 import { router } from '@inertiajs/svelte'
 
@@ -112,8 +107,7 @@ function createUser() {
     })
 }
 </script>
-
-</code-snippet>
+```
 
 ## Form Handling
 
@@ -121,8 +115,8 @@ function createUser() {
 
 The recommended way to build forms is with the `<Form>` component:
 
-<code-snippet name="Form Component Example" lang="svelte">
-
+<!-- Form Component Example -->
+```svelte
 <script>
 import { Form } from '@inertiajs/svelte'
 </script>
@@ -146,8 +140,7 @@ import { Form } from '@inertiajs/svelte'
         <div>User created!</div>
     {/if}
 </Form>
-
-</code-snippet>
+```
 
 ### Form Component Reset Props
 
@@ -159,8 +152,8 @@ The `<Form>` component supports automatic resetting:
 
 Use the `search-docs` tool with a query of `form component resetting` for detailed guidance.
 
-<code-snippet name="Form With Reset Props" lang="svelte">
-
+<!-- Form With Reset Props -->
+```svelte
 <script>
 import { Form } from '@inertiajs/svelte'
 </script>
@@ -183,8 +176,7 @@ import { Form } from '@inertiajs/svelte'
         Submit
     </button>
 </Form>
-
-</code-snippet>
+```
 
 Forms can also be built using the `useForm` hook for more programmatic control. Use the `search-docs` tool with a query of `useForm helper` for guidance.
 
@@ -192,8 +184,8 @@ Forms can also be built using the `useForm` hook for more programmatic control. 
 
 For more programmatic control or to follow existing conventions, use the `useForm` hook:
 
-<code-snippet name="useForm Example" lang="svelte">
-
+<!-- useForm Example -->
+```svelte
 <script>
 import { useForm } from '@inertiajs/svelte'
 
@@ -230,8 +222,7 @@ function submit() {
         Create User
     </button>
 </form>
-
-</code-snippet>
+```
 
 ## Inertia v2 Features
 
@@ -239,8 +230,8 @@ function submit() {
 
 Use deferred props to load data after initial page render:
 
-<code-snippet name="Deferred Props with Empty State" lang="svelte">
-
+<!-- Deferred Props with Empty State -->
+```svelte
 <script>
 export let users
 </script>
@@ -260,40 +251,59 @@ export let users
         </ul>
     {/if}
 </div>
-
-</code-snippet>
+```
 
 ### Polling
 
-Automatically refresh data at intervals:
+Use the `usePoll` hook to automatically refresh data at intervals. It handles cleanup on unmount and throttles polling when the tab is inactive.
 
-<code-snippet name="Polling Example" lang="svelte">
-
+<!-- Basic Polling -->
+```svelte
 <script>
-import { router } from '@inertiajs/svelte'
-import { onMount, onDestroy } from 'svelte'
+import { usePoll } from '@inertiajs/svelte'
 
 export let stats
 
-let interval
-
-onMount(() => {
-    interval = setInterval(() => {
-        router.reload({ only: ['stats'] })
-    }, 5000) // Poll every 5 seconds
-})
-
-onDestroy(() => {
-    clearInterval(interval)
-})
+usePoll(5000)
 </script>
 
 <div>
     <h1>Dashboard</h1>
     <div>Active Users: {stats.activeUsers}</div>
 </div>
+```
 
-</code-snippet>
+<!-- Polling With Request Options and Manual Control -->
+```svelte
+<script>
+import { usePoll } from '@inertiajs/svelte'
+
+export let stats
+
+const { start, stop } = usePoll(5000, {
+    only: ['stats'],
+    onStart() {
+        console.log('Polling request started')
+    },
+    onFinish() {
+        console.log('Polling request finished')
+    },
+}, {
+    autoStart: false,
+    keepAlive: true,
+})
+</script>
+
+<div>
+    <h1>Dashboard</h1>
+    <div>Active Users: {stats.activeUsers}</div>
+    <button on:click={start}>Start Polling</button>
+    <button on:click={stop}>Stop Polling</button>
+</div>
+```
+
+- `autoStart` (default `true`) — set to `false` to start polling manually via the returned `start()` function
+- `keepAlive` (default `false`) — set to `true` to prevent throttling when the browser tab is inactive
 
 ## Server-Side Patterns
 

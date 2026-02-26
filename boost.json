@@ -2,13 +2,5 @@
     "agents": [
         "copilot"
     ],
-    "packages": [
-        "inertiajs/inertia-laravel"
-    ],
-    "skills": [
-        "wayfinder-development",
-        "pest-testing",
-        "inertia-svelte-development",
-        "tailwindcss-development"
-    ]
+    "guidelines": true
 }
