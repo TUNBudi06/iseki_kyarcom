@@ -1,4 +1,4 @@
-import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition } from './../wayfinder'
 /**
 * @see \App\Http\Controllers\HomeController::home
  * @see app/Http/Controllers/HomeController.php:13
@@ -42,6 +42,41 @@ home.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     method: 'head',
 })
 
+    /**
+* @see \App\Http\Controllers\HomeController::home
+ * @see app/Http/Controllers/HomeController.php:13
+ * @route '/'
+ */
+    const homeForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+        action: home.url(options),
+        method: 'get',
+    })
+
+            /**
+* @see \App\Http\Controllers\HomeController::home
+ * @see app/Http/Controllers/HomeController.php:13
+ * @route '/'
+ */
+        homeForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+            action: home.url(options),
+            method: 'get',
+        })
+            /**
+* @see \App\Http\Controllers\HomeController::home
+ * @see app/Http/Controllers/HomeController.php:13
+ * @route '/'
+ */
+        homeForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+            action: home.url({
+                        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+                            _method: 'HEAD',
+                            ...(options?.query ?? options?.mergeQuery ?? {}),
+                        }
+                    }),
+            method: 'get',
+        })
+    
+    home.form = homeForm
 /**
 * @see \App\Http\Controllers\AboutController::about
  * @see app/Http/Controllers/AboutController.php:13
@@ -84,3 +119,39 @@ about.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: about.url(options),
     method: 'head',
 })
+
+    /**
+* @see \App\Http\Controllers\AboutController::about
+ * @see app/Http/Controllers/AboutController.php:13
+ * @route '/about'
+ */
+    const aboutForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+        action: about.url(options),
+        method: 'get',
+    })
+
+            /**
+* @see \App\Http\Controllers\AboutController::about
+ * @see app/Http/Controllers/AboutController.php:13
+ * @route '/about'
+ */
+        aboutForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+            action: about.url(options),
+            method: 'get',
+        })
+            /**
+* @see \App\Http\Controllers\AboutController::about
+ * @see app/Http/Controllers/AboutController.php:13
+ * @route '/about'
+ */
+        aboutForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+            action: about.url({
+                        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+                            _method: 'HEAD',
+                            ...(options?.query ?? options?.mergeQuery ?? {}),
+                        }
+                    }),
+            method: 'get',
+        })
+    
+    about.form = aboutForm
