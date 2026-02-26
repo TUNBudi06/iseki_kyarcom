@@ -41,6 +41,7 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
+            'baseUrl' => rtrim(config('app.url'), '/'),
         ];
     }
 }

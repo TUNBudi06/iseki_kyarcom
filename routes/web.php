@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
-Route::get('/', function () {
-    return Inertia::render('Welcome');
-})->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/about', [AboutController::class, 'index'])->name('about');
